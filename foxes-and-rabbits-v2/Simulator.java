@@ -2,7 +2,12 @@ import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.*;
+
+import javax.swing.*;
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
@@ -19,9 +24,9 @@ public class Simulator
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 80;
     // The probability that a fox will be created in any given grid position.
-    private static final double FOX_CREATION_PROBABILITY = 0.02;
+    private static final double FOX_CREATION_PROBABILITY = 0.0001; //0.02;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double RABBIT_CREATION_PROBABILITY = 0.08;    
+    private static final double RABBIT_CREATION_PROBABILITY = 0.0001;//0.08;    
 
     // List of animals in the field.
     private List<Animal> animals;
@@ -61,6 +66,25 @@ public class Simulator
         view = new SimulatorView(depth, width);
         view.setColor(Rabbit.class, Color.orange);
         view.setColor(Fox.class, Color.blue);
+        ////////////////////JB buttons////////////////
+        JPanel buttonPanel = new JPanel(new GridLayout(2,1));
+        JButton button1 = new JButton("Step 1");
+        JButton button100 = new JButton("Step 100");
+        button1.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				simulate(1);
+			}
+		});
+        button100.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				simulate(100);
+			}
+		});
+        buttonPanel.add(button1);
+        buttonPanel.add(button100);
+        view.add(buttonPanel, BorderLayout.WEST);
+        /////////////////////////////////////
+        
         
         // Setup a valid starting point.
         reset();

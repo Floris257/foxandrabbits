@@ -54,6 +54,72 @@ public class SimulatorView extends JFrame
         contents.add(stepLabel, BorderLayout.NORTH);
         contents.add(fieldView, BorderLayout.CENTER);
         contents.add(population, BorderLayout.SOUTH);
+        
+        /*////////////////////Jan-Bert van Slochteren buttons////////////////////////////////
+        JPanel buttonPanel = new JPanel(new GridLayout(2,1));
+        JButton button1 = new JButton("Step 1");
+        JButton button100 = new JButton("Step 100");
+        button1.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("button1");
+			}
+		});
+        button100.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("button100");
+			}
+		});
+        buttonPanel.add(button1);
+        buttonPanel.add(button100);
+        contents.add(buttonPanel, BorderLayout.WEST);
+        *///////////////////////////////////////////////////////////////////////////////////
+        
+/////////////////Jan-Bert van Slochteren menubar//////////////////////
+        JMenuBar menu = new JMenuBar();
+        JMenu menu1 = new JMenu("Menu1");
+        JMenu menu2 = new JMenu("Menu2");
+        JMenuItem option1 = new JMenuItem("option1-1");
+        JMenuItem option2 = new JMenuItem("option1-2");
+        JMenuItem option3 = new JMenuItem("option2-1");
+        JMenuItem option4 = new JMenuItem("option2-2");
+        JMenuItem help = new JMenu("Help");
+        menu1.add(option1);
+        menu1.add(option2);
+        menu2.add(option3);
+        menu2.add(option4);
+        help.add(help);
+        option1.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("option1-1");
+			}
+		});
+        option2.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("option1-2");
+			}
+		});
+        option3.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("option2-1");
+			}
+		});
+        option4.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("option2-2");
+			}
+		});
+        help.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("help");
+			}
+		});
+        menu.add(menu1);
+        menu.add(menu2);
+        menu.add(help);
+        this.setJMenuBar(menu);
+
+/////////////////////////////////////////////////////////////////////////////////////////        
+        
         pack();
         setVisible(true);
     }
@@ -113,7 +179,7 @@ public class SimulatorView extends JFrame
         }
         stats.countFinished();
 
-        population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
+        population.setText(POPULATION_PREFIX +stats.getPopulationDetails(field));
         fieldView.repaint();
     }
 
