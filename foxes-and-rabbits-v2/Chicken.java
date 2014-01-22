@@ -63,7 +63,7 @@ public class Chicken extends Animal {
         int births = breed();
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Rabbit young = new Rabbit(false, field, loc);
+            Chicken young = new Chicken(false, field, loc); //<- changed Rabbit to Chicken
             newChickens.add(young);
         }
     }
