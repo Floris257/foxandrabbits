@@ -24,6 +24,7 @@ public class Fox extends Animal
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
     private static final int RABBIT_FOOD_VALUE = 9;
+    private static final int CHICKEN_FOOD_VALUE = 11;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -125,6 +126,15 @@ public class Fox extends Animal
                     rabbit.setDead();
                     foodLevel = RABBIT_FOOD_VALUE;
                     // Remove the dead rabbit from the field.
+                    return where;
+                }
+            }
+            if(animal instanceof Chicken) {
+                Chicken chicken = (Chicken) animal;
+                if(chicken.isAlive()) { 
+                    chicken.setDead();
+                    foodLevel = CHICKEN_FOOD_VALUE;
+                    // Remove the dead chicken from the field.
                     return where;
                 }
             }
