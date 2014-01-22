@@ -24,9 +24,14 @@ public class Simulator
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 80;
     // The probability that a fox will be created in any given grid position.
-    private static final double FOX_CREATION_PROBABILITY = 0.0001; //0.02;
+    private static final double FOX_CREATION_PROBABILITY = 0.02;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double RABBIT_CREATION_PROBABILITY = 0.0001;//0.08;    
+    private static final double RABBIT_CREATION_PROBABILITY = 0.08;    
+/////////////////////Jan-Bert chickens en hunters//////////////
+    private static final double CHICKEN_CREATION_PROBABILITY = 0.08;
+    
+    private static final double HUNTER_CREATION_PROBABILITY = 0.01;
+////////////////////////////////////////////////////////////
 
     // List of animals in the field.
     private List<Animal> animals;
@@ -171,6 +176,18 @@ public class Simulator
                     Rabbit rabbit = new Rabbit(true, field, location);
                     animals.add(rabbit);
                 }
+                /////////////////////Jan-Bert chickens en hunters//////////////
+                else if(rand.nextDouble() <= CHICKEN_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Chicken chicken = new Chicken(true, field, location);
+                    animals.add(chicken);
+                }
+                else if(rand.nextDouble() <= HUNTER_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Hunter hunter = new Hunter(field, location);
+                    animals.add(hunter);
+                }
+                //////////////////////////////////////////////////////////////
                 // else leave the location empty.
             }
         }
