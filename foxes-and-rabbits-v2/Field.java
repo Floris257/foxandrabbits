@@ -203,4 +203,15 @@ public class Field
     {
         return width;
     }
+    
+    /**
+     * Return a random location.
+     * @return a random Location
+     */
+    public Location randomLocation()
+    {
+    	int row = rand.nextInt(depth);
+    	int col = rand.nextInt(width);
+    	return new Location(row, col);
+    }
 }

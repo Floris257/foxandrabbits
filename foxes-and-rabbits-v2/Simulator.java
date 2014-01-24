@@ -73,6 +73,56 @@ public class Simulator
         view.setColor(Chicken.class, Color.yellow);
         view.setColor(Rabbit.class, Color.orange);
         view.setColor(Fox.class, Color.blue);
+        /////////////////Jan-Bert van Slochteren menubar//////////////////////
+        JMenuBar menu = new JMenuBar();
+        JMenu menu1 = new JMenu("Menu1");
+        JMenu menu2 = new JMenu("Menu2");
+        JMenuItem option1 = new JMenuItem("add Hunter");
+        JMenuItem option2 = new JMenuItem("option1-2");
+        JMenuItem option3 = new JMenuItem("option2-1");
+        JMenuItem option4 = new JMenuItem("option2-2");
+        JMenuItem help = new JMenu("Help");
+        menu1.add(option1);
+        menu1.add(option2);
+        menu2.add(option3);
+        menu2.add(option4);
+        help.add(help);
+        option1.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				//WIP JB
+				//
+				Location location = field.randomLocation();
+                Hunter hunter = new Hunter(field, location);
+                animals.add(hunter);
+                view.showStatus(step, field);
+			}
+		});
+        option2.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("option1-2");
+			}
+		});
+        option3.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("option2-1");
+			}
+		});
+        option4.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("option2-2");
+			}
+		});
+        help.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				System.out.println("help");
+			}
+		});
+        menu.add(menu1);
+        menu.add(menu2);
+        menu.add(help);
+        view.setJMenuBar(menu);
+
+///////////////////////////////////////////////////////////////////////////////////////// 
         ////////////////////JB buttons////////////////
         JPanel buttonPanel = new JPanel(new GridLayout(2,1));
         JButton button1 = new JButton("Step 1");

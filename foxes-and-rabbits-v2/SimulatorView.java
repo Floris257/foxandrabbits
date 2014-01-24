@@ -74,7 +74,7 @@ public class SimulatorView extends JFrame
         contents.add(buttonPanel, BorderLayout.WEST);
         *///////////////////////////////////////////////////////////////////////////////////
         
-/////////////////Jan-Bert van Slochteren menubar//////////////////////
+/*////////////////Jan-Bert van Slochteren menubar//////////////////////
         JMenuBar menu = new JMenuBar();
         JMenu menu1 = new JMenu("Menu1");
         JMenu menu2 = new JMenu("Menu2");
@@ -118,7 +118,7 @@ public class SimulatorView extends JFrame
         menu.add(help);
         this.setJMenuBar(menu);
 
-/////////////////////////////////////////////////////////////////////////////////////////        
+*/////////////////////////////////////////////////////////////////////////////////////////        
         
         pack();
         setVisible(true);
