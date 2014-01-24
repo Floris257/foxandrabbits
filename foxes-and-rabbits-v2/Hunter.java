@@ -5,8 +5,8 @@ import java.util.Iterator;
  * A simple model of a fox.
  * Foxes age, move, eat rabbits, and die.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2011.07.31
+ * @author Floris Meijer, Joz Reijneveld, Jan-bert van Slochteren
+ * @version 2014.01.24
  */
 public class Hunter extends Animal
 {

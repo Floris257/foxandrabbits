@@ -1,6 +1,12 @@
 import java.util.List;
 import java.util.Random;
 
+/**
+ * A class representing shared characteristics of chicken.
+ * 
+ * @author Floris Meijer, Joz Reijneveld, Jan-bert van Slochteren
+ * @version 2014.01.24 
+ */
 
 public class Chicken extends Animal {
 	// Characteristics shared by all chicken (class variables).
