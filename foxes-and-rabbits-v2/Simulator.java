@@ -78,7 +78,7 @@ public class Simulator
         JMenu menu1 = new JMenu("Menu1");
         JMenu menu2 = new JMenu("Menu2");
         JMenuItem option1 = new JMenuItem("add Hunter");
-        JMenuItem option2 = new JMenuItem("option1-2");
+        JMenuItem option2 = new JMenuItem("Change Fox");
         JMenuItem option3 = new JMenuItem("option2-1");
         JMenuItem option4 = new JMenuItem("option2-2");
         JMenuItem help = new JMenu("Help");
@@ -99,6 +99,7 @@ public class Simulator
 		});
         option2.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
+				new ParameterInput("Fox");
 				System.out.println("option1-2");
 			}
 		});
