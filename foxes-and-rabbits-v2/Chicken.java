@@ -12,13 +12,13 @@ public class Chicken extends Animal {
 	// Characteristics shared by all chicken (class variables).
 
     // The age at which a chicken can start to breed.
-    private static final int BREEDING_AGE = 5;
+	public static int BREEDING_AGE = 5;
     // The age to which a chicken can live.
-    private static final int MAX_AGE = 10;
+	public static int MAX_AGE = 10;
     // The likelihood of a chicken breeding.
-    private static final double BREEDING_PROBABILITY = 0.18;
+	public static double BREEDING_PROBABILITY = 0.18;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 3;
+	public static int MAX_LITTER_SIZE = 3;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     

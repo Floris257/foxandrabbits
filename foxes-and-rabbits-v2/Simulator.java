@@ -81,11 +81,15 @@ public class Simulator
         JMenuItem option2 = new JMenuItem("Change Fox");
         JMenuItem option3 = new JMenuItem("option2-1");
         JMenuItem option4 = new JMenuItem("option2-2");
+        JMenuItem option5 = new JMenuItem("Change Rabbit");
+        JMenuItem option6 = new JMenuItem("Change Chicken");
         JMenuItem help = new JMenu("Help");
         menu1.add(option1);
         menu1.add(option2);
         menu2.add(option3);
         menu2.add(option4);
+        menu1.add(option5);
+        menu1.add(option6);
         help.add(help);
         option1.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
@@ -101,6 +105,18 @@ public class Simulator
 			public void actionPerformed (ActionEvent e) {
 				new ParameterInput("Fox");
 				System.out.println("option1-2");
+			}
+		});
+        option5.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				new ParameterInput("Rabbit");
+				System.out.println("option1-3");
+			}
+		});
+        option6.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				new ParameterInput("Chicken");
+				System.out.println("option1-4");
 			}
 		});
         option3.addActionListener(new ActionListener() {
