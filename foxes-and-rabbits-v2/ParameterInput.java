@@ -42,6 +42,7 @@ public class ParameterInput {
 		JTextField MAText = new JTextField();
 		JTextField BPText = new JTextField();
 		JTextField LSText = new JTextField();
+		JButton OK = new JButton("OK");
 		Container contentPane = frame.getContentPane();
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		contentPane.add(nameLabel);
@@ -53,6 +54,7 @@ public class ParameterInput {
 		contentPane.add(BPText);
 		contentPane.add(LSLabel);
 		contentPane.add(LSText);
+		contentPane.add(OK);
 		frame.pack();
 		frame.setVisible(true);
 		
