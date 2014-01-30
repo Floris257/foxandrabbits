@@ -13,13 +13,13 @@ public class Rabbit extends Animal
     // Characteristics shared by all rabbits (class variables).
 
     // The age at which a rabbit can start to breed.
-	public static int BREEDING_AGE = 5;
+	private static int BREEDING_AGE = 5;
     // The age to which a rabbit can live.
-	public static int MAX_AGE = 20;
+	private static int MAX_AGE = 20;
     // The likelihood of a rabbit breeding.
-	public static double BREEDING_PROBABILITY = 0.12;
+	private static double BREEDING_PROBABILITY = 0.12;
     // The maximum number of births.
-	public static int MAX_LITTER_SIZE = 4;
+	private static int MAX_LITTER_SIZE = 4;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     	
@@ -41,7 +41,7 @@ public class Rabbit extends Animal
         super(field, location);
         age = 0;
         if(randomAge) {
-            age = rand.nextInt(MAX_AGE);
+            age = rand.nextInt(getMAX_AGE());
         }
     }
     
@@ -74,7 +74,7 @@ public class Rabbit extends Animal
     private void incrementAge()
     {
         age++;
-        if(age > MAX_AGE) {
+        if(age > getMAX_AGE()) {
             setDead();
         }
     }
@@ -106,8 +106,8 @@ public class Rabbit extends Animal
     private int breed()
     {
         int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+        if(canBreed() && rand.nextDouble() <= getBREEDING_PROBABILITY()) {
+            births = rand.nextInt(getMAX_LITTER_SIZE()) + 1;
         }
         return births;
     }
@@ -118,6 +118,38 @@ public class Rabbit extends Animal
      */
     private boolean canBreed()
     {
-        return age >= BREEDING_AGE;
+        return age >= getBREEDING_AGE();
     }
+
+	public static int getBREEDING_AGE() {
+		return BREEDING_AGE;
+	}
+
+	public static void setBREEDING_AGE(int bREEDING_AGE) {
+		BREEDING_AGE = bREEDING_AGE;
+	}
+
+	public static int getMAX_AGE() {
+		return MAX_AGE;
+	}
+
+	public static void setMAX_AGE(int mAX_AGE) {
+		MAX_AGE = mAX_AGE;
+	}
+
+	public static double getBREEDING_PROBABILITY() {
+		return BREEDING_PROBABILITY;
+	}
+
+	public static void setBREEDING_PROBABILITY(double bREEDING_PROBABILITY) {
+		BREEDING_PROBABILITY = bREEDING_PROBABILITY;
+	}
+
+	public static int getMAX_LITTER_SIZE() {
+		return MAX_LITTER_SIZE;
+	}
+
+	public static void setMAX_LITTER_SIZE(int mAX_LITTER_SIZE) {
+		MAX_LITTER_SIZE = mAX_LITTER_SIZE;
+	}
 }

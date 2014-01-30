@@ -17,10 +17,10 @@ public class ParameterInput {
 	private JLabel MALabel = new JLabel("Vul de leeftijd in waarop de dieren sterven [e.g. 18]");
 	private JLabel BPLabel = new JLabel("Vul de kans van voortplanting in [e.g. 0.36]");
 	private JLabel LSLabel = new JLabel("Vul de het maximum aantal geboortes per dier per stap in [e.g. 3]");
-	private JTextField BAText;
-	private JTextField MAText;
-	private JTextField BPText;
-	private JTextField LSText;
+	private JTextField BAText = new JTextField();
+	private JTextField MAText = new JTextField();
+	private JTextField BPText = new JTextField();
+	private JTextField LSText = new JTextField();
 	
 	public ParameterInput(){
 		//omitted
@@ -29,48 +29,11 @@ public class ParameterInput {
 	public ParameterInput(final String animal){
 		//TODO fix all this BS;
 		//
-		if(animal.equals("Fox")){
-			//Fox BS
-			nameLabel = new JLabel("Vossen");
-			BAText = new JTextField(new String().valueOf(Fox.BREEDING_AGE));
-			MAText = new JTextField(new String().valueOf(Fox.MAX_AGE));
-			BPText = new JTextField(new String().valueOf(Fox.BREEDING_PROBABILITY));
-			LSText = new JTextField(new String().valueOf(Fox.MAX_LITTER_SIZE));
-			breedingAge = Fox.BREEDING_AGE;
-			maxAge = Fox.MAX_AGE;
-			breedingProbability = Fox.BREEDING_PROBABILITY;
-			litterSize = Fox.MAX_LITTER_SIZE;
-		}
-		if(animal.equals("Rabbit")){
-			//Rabbit BS
-			nameLabel = new JLabel("Konijnen");
-			BAText = new JTextField(new String().valueOf(Rabbit.BREEDING_AGE));
-			MAText = new JTextField(new String().valueOf(Rabbit.MAX_AGE));
-			BPText = new JTextField(new String().valueOf(Rabbit.BREEDING_PROBABILITY));
-			LSText = new JTextField(new String().valueOf(Rabbit.MAX_LITTER_SIZE));
-			breedingAge = Rabbit.BREEDING_AGE;
-			maxAge = Rabbit.MAX_AGE;
-			breedingProbability = Rabbit.BREEDING_PROBABILITY;
-			litterSize = Rabbit.MAX_LITTER_SIZE;
-		}
-		if(animal.equals("Chicken")){
-			//Chicken BS
-			nameLabel = new JLabel("Kippen");
-			BAText = new JTextField(new String().valueOf(Chicken.BREEDING_AGE));
-			MAText = new JTextField(new String().valueOf(Chicken.MAX_AGE));
-			BPText = new JTextField(new String().valueOf(Chicken.BREEDING_PROBABILITY));
-			LSText = new JTextField(new String().valueOf(Chicken.MAX_LITTER_SIZE));
-			breedingAge = Chicken.BREEDING_AGE;
-			maxAge = Chicken.MAX_AGE;
-			breedingProbability = Chicken.BREEDING_PROBABILITY;
-			litterSize = Chicken.MAX_LITTER_SIZE;
-		}
+		setVariables(animal);
+		setText();
 		//TODO textfields etc.;
 		frame = new JFrame();
-		/*BAText = new JTextField(5);
-		MAText = new JTextField(5);
-		BPText = new JTextField(5);
-		LSText = new JTextField(5);*/
+		
 		JButton OK = new JButton("OK");
 		JButton reset = new JButton("Reset");
 		OK.addActionListener(new ActionListener(){
@@ -94,33 +57,34 @@ public class ParameterInput {
 				
 				if(animal.equals("Fox")){
 					//Fox BS
-					Fox.BREEDING_AGE = BAInteger.intValue();
-					Fox.MAX_AGE = MAInteger.intValue();
-					Fox.BREEDING_PROBABILITY = BPInteger.doubleValue();
-					Fox.MAX_LITTER_SIZE = LSInteger.intValue();
+					Fox.setBREEDING_AGE(BAInteger.intValue());
+					Fox.setMAX_AGE(MAInteger.intValue());
+					Fox.setBREEDING_PROBABILITY(BPInteger.doubleValue());
+					Fox.setMAX_LITTER_SIZE(LSInteger.intValue());
 					System.out.println("FOX aangepast");
 				}
 				if(animal.equals("Rabbit")){
 					//Rabbit BS
-					Rabbit.BREEDING_AGE = BAInteger.intValue();
-					Rabbit.MAX_AGE = MAInteger.intValue();
-					Rabbit.BREEDING_PROBABILITY = BPInteger.doubleValue();
-					Rabbit.MAX_LITTER_SIZE = LSInteger.intValue();
+					Rabbit.setBREEDING_AGE(BAInteger.intValue());
+					Rabbit.setMAX_AGE(MAInteger.intValue());
+					Rabbit.setBREEDING_PROBABILITY(BPInteger.doubleValue());
+					Rabbit.setMAX_LITTER_SIZE(LSInteger.intValue());
 					System.out.println("rabbit aangepast");
 				}
 				if(animal.equals("Chicken")){
 					//Chicken BS
-					Chicken.BREEDING_AGE = BAInteger.intValue();
-					Chicken.MAX_AGE = MAInteger.intValue();
-					Chicken.BREEDING_PROBABILITY = BPInteger.doubleValue();
-					Chicken.MAX_LITTER_SIZE = LSInteger.intValue();
+					Chicken.setBREEDING_AGE(BAInteger.intValue());
+					Chicken.setMAX_AGE(MAInteger.intValue());
+					Chicken.setBREEDING_PROBABILITY(BPInteger.doubleValue());
+					Chicken.setMAX_LITTER_SIZE(LSInteger.intValue());
 					System.out.println("chicken aangepast");
 				}
 				
 				frame.dispose();
 				}
 				catch(NumberFormatException except){
-					System.out.println("USE VALID INPUT, FUCKTARD!");
+					JOptionPane.showMessageDialog(null, "De ingevoerde getallen zijn niet van het juiste formaat.");
+					
 				}
 				
 			}
@@ -128,10 +92,7 @@ public class ParameterInput {
 		reset.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//TODO get text, filter text, update vars;
-				BAText.setText(new String().valueOf(breedingAge));
-				MAText.setText(new String().valueOf(maxAge));
-				BPText.setText(new String().valueOf(breedingProbability));
-				LSText.setText(new String().valueOf(litterSize));
+				setText();
 				
 				///////////
 			}
@@ -160,6 +121,40 @@ public class ParameterInput {
 		frame.setVisible(true);
 		
 		
+	}
+	
+	private void setText(){
+		BAText.setText(new String().valueOf(breedingAge));
+		MAText.setText(new String().valueOf(maxAge));
+		BPText.setText(new String().valueOf(breedingProbability));
+		LSText.setText(new String().valueOf(litterSize));
+	}
+	
+	private void setVariables(String animal){
+		if(animal.equals("Fox")){
+			//Fox BS
+			nameLabel = new JLabel("Vossen");
+			breedingAge = Fox.getBREEDING_AGE();
+			maxAge = Fox.getMAX_AGE();
+			breedingProbability = Fox.getBREEDING_PROBABILITY();
+			litterSize = Fox.getMAX_LITTER_SIZE();
+		}
+		if(animal.equals("Rabbit")){
+			//Rabbit BS
+			nameLabel = new JLabel("Konijnen");
+			breedingAge = Rabbit.getBREEDING_AGE();
+			maxAge = Rabbit.getMAX_AGE();
+			breedingProbability = Rabbit.getBREEDING_PROBABILITY();
+			litterSize = Rabbit.getMAX_LITTER_SIZE();
+		}
+		if(animal.equals("Chicken")){
+			//Chicken BS
+			nameLabel = new JLabel("Kippen");
+			breedingAge = Chicken.getBREEDING_AGE();
+			maxAge = Chicken.getMAX_AGE();
+			breedingProbability = Chicken.getBREEDING_PROBABILITY();
+			litterSize = Chicken.getMAX_LITTER_SIZE();
+		}
 	}
 	
 }
