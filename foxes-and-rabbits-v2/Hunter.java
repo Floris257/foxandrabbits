@@ -14,13 +14,15 @@ public class Hunter extends Animal
     
 
     /**
-     * Create a fox. A fox can be created as a new born (age zero
-     * and not hungry) or with a random age and food level.
+     * Create a Hunter.
      * 
-     * @param randomAge If true, the fox will have random age and hunger level.
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
+	private Disease disease;
+	//days till the disease kills the Hunter.
+    private int diseaseDays;
+	
     public Hunter(Field field, Location location)
     {
         super(field, location);
@@ -35,7 +37,10 @@ public class Hunter extends Animal
      */
     public void act(List<Animal> newHunters)
     {
-        if(isAlive()) {            
+        if(isAlive()) {
+        	if(disease != null){
+            	disease.spread(getField(), getLocation());
+            }
             // Move towards a source of food if found.
             Location newLocation = findFood();
             if(newLocation == null) { 
@@ -49,6 +54,15 @@ public class Hunter extends Animal
             else {
                 // Overcrowding.
                 // setDead();
+            }
+            if(disease != null){
+            	//System.out.println(diseaseDays);
+            	if(diseaseDays == 0){
+            		setDead();
+            	}
+            	else{
+            		diseaseDays = diseaseDays - 1;
+            	}
             }
         }
     }
@@ -86,4 +100,14 @@ public class Hunter extends Animal
         }
         return null;
     }
+
+    public Disease getDisease(){
+		return disease;
+	}
+	public void setDisease(Disease disease) {
+		this.disease = disease;
+	}
+	public void setDiseaseDays(int days){
+		this.diseaseDays = days;
+	}
 }

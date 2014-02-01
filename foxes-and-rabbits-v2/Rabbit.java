@@ -22,12 +22,17 @@ public class Rabbit extends Animal
 	private static int MAX_LITTER_SIZE = 4;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
+    
+    
     	
     // Individual characteristics (instance fields).
     
     // The rabbit's age.
     private int age;
-
+    // Has a contagious disease.
+    private Disease disease;
+  //days till the disease kills the animal.
+    private int diseaseDays;
     /**
      * Create a new rabbit. A rabbit may be created with age
      * zero (a new born) or with a random age.
@@ -54,6 +59,9 @@ public class Rabbit extends Animal
     {
         incrementAge();
         if(isAlive()) {
+        	if(disease != null){
+            	disease.spread(getField(), getLocation());
+            }
             giveBirth(newRabbits);            
             // Try to move into a free location.
             Location newLocation = getField().freeAdjacentLocation(getLocation());
@@ -63,6 +71,14 @@ public class Rabbit extends Animal
             else {
                 // Overcrowding.
                 setDead();
+            }
+            if(disease != null){
+            	if(diseaseDays == 0){
+            		setDead();
+            	}
+            	else{
+            		diseaseDays = diseaseDays - 1;
+            	}
             }
         }
     }
@@ -151,5 +167,16 @@ public class Rabbit extends Animal
 
 	public static void setMAX_LITTER_SIZE(int mAX_LITTER_SIZE) {
 		MAX_LITTER_SIZE = mAX_LITTER_SIZE;
+	}
+	public Disease getDisease(){
+		return disease;
+	}
+	public void setDisease(Disease disease) {
+		// TODO Auto-generated method stub
+		this.disease = disease;
+		
+	}
+	public void setDiseaseDays(int days){
+		this.diseaseDays = days;
 	}
 }

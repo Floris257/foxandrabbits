@@ -26,6 +26,10 @@ public class Chicken extends Animal {
     
     // The chicken's age.
     private int age;
+ // Has a contagious disease.
+    private Disease disease;
+  //days till the disease kills the animal.
+    private int diseaseDays;
 
     /**
      * Create a new chicken. A chicken may be created with age
@@ -101,6 +105,9 @@ public class Chicken extends Animal {
 	public void act(List<Animal> newChickens) {
 		incrementAge();
         if(isAlive()) {
+        	if(disease != null){
+            	disease.spread(getField(), getLocation());
+            }
             giveBirth(newChickens);            
             // Try to move into a free location.
             Location newLocation = getField().freeAdjacentLocation(getLocation());
@@ -110,6 +117,14 @@ public class Chicken extends Animal {
             else {
                 // Overcrowding.
                 setDead();
+            }
+            if(disease != null){
+            	if(diseaseDays == 0){
+            		setDead();
+            	}
+            	else{
+            		diseaseDays = diseaseDays - 1;
+            	}
             }
         }
 		
@@ -137,6 +152,15 @@ public class Chicken extends Animal {
 	}
 	public static void setMAX_LITTER_SIZE(int mAX_LITTER_SIZE) {
 		MAX_LITTER_SIZE = mAX_LITTER_SIZE;
+	}
+	public Disease getDisease(){
+		return disease;
+	}
+	public void setDisease(Disease disease) {
+		this.disease = disease;
+	}
+	public void setDiseaseDays(int days){
+		this.diseaseDays = days;
 	}
 
 }

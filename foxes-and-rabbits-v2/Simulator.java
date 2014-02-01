@@ -83,6 +83,10 @@ public class Simulator
         JMenuItem option4 = new JMenuItem("option2-2");
         JMenuItem option5 = new JMenuItem("Change Rabbit");
         JMenuItem option6 = new JMenuItem("Change Chicken");
+        JMenuItem infect1 = new JMenuItem("Infect Fox");
+        JMenuItem infect2 = new JMenuItem("Infect Rabbit");
+        JMenuItem infect3 = new JMenuItem("Infect Chicken");
+        JMenuItem infect4 = new JMenuItem("Infect Hunter");
         JMenuItem help = new JMenu("Help");
         menu1.add(option1);
         menu1.add(option2);
@@ -90,6 +94,10 @@ public class Simulator
         menu2.add(option4);
         menu1.add(option5);
         menu1.add(option6);
+        menu2.add(infect1);
+        menu2.add(infect2);
+        menu2.add(infect3);
+        menu2.add(infect4);
         help.add(help);
         option1.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
@@ -134,6 +142,66 @@ public class Simulator
 				System.out.println("help");
 			}
 		});
+        infect1.addActionListener(new ActionListener(){
+        	//
+        	public void actionPerformed(ActionEvent e){
+        		Iterator<Animal> it = animals.iterator();
+        		Fox infectee = null;
+        		while(it.hasNext() && infectee == null){
+        			Animal current = it.next();
+        			if(current instanceof Fox){
+        				infectee = (Fox)current;
+        			}
+        		}
+        		infectee.setDisease(new Disease("Fox"));
+        		infectee.setDiseaseDays(infectee.getDisease().getDEFAULT_DAYS());
+        	}
+        });
+        infect2.addActionListener(new ActionListener(){
+        	//
+        	public void actionPerformed(ActionEvent e){
+        		Iterator<Animal> it = animals.iterator();
+        		Rabbit infectee = null;
+        		while(it.hasNext() && infectee == null){
+        			Animal current = it.next();
+        			if(current instanceof Rabbit){
+        				infectee = (Rabbit)current;
+        			}
+        		}
+        		infectee.setDisease(new Disease("Rabbit"));
+        		infectee.setDiseaseDays(infectee.getDisease().getDEFAULT_DAYS());
+        	}
+        });
+        infect3.addActionListener(new ActionListener(){
+        	//
+        	public void actionPerformed(ActionEvent e){
+        		Iterator<Animal> it = animals.iterator();
+        		Chicken infectee = null;
+        		while(it.hasNext() && infectee == null){
+        			Animal current = it.next();
+        			if(current instanceof Chicken){
+        				infectee = (Chicken)current;
+        			}
+        		}
+        		infectee.setDisease(new Disease("Chicken"));
+        		infectee.setDiseaseDays(infectee.getDisease().getDEFAULT_DAYS());
+        	}
+        });
+        infect4.addActionListener(new ActionListener(){
+        	//
+        	public void actionPerformed(ActionEvent e){
+        		Iterator<Animal> it = animals.iterator();
+        		Hunter infectee = null;
+        		while(it.hasNext() && infectee == null){
+        			Animal current = it.next();
+        			if(current instanceof Hunter){
+        				infectee = (Hunter)current;
+        			}
+        		}
+        		infectee.setDisease(new Disease("Hunter"));
+        		infectee.setDiseaseDays(infectee.getDisease().getDEFAULT_DAYS());
+        	}
+        });
         menu.add(menu1);
         menu.add(menu2);
         menu.add(help);
@@ -258,5 +326,8 @@ public class Simulator
                 // else leave the location empty.
             }
         }
+    }
+    public List<Animal> getAnimals(){
+    	return animals;
     }
 }
