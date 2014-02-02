@@ -7,9 +7,14 @@
 
 public class Start {
 	
+	/**
+	 * This start the Simulation xD
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 			Simulator sim = new Simulator();
+			
 	}
 
 }

@@ -49,7 +49,7 @@ public class Chicken extends Animal {
 	//random comment line
 	/**
      * Increase the age.
-     * This could result in the rabbit's death.
+     * This could result in the chicken's death.
      */
 	private void incrementAge()
     {
@@ -60,7 +60,7 @@ public class Chicken extends Animal {
     }
 	
 	/**
-     * Check whether or not this rabbit is to give birth at this step.
+     * Check whether or not this chicken is to give birth at this step.
      * New births will be made into free adjacent locations.
      * @param newChickens A list to return newly born chickens.
      */
@@ -73,7 +73,7 @@ public class Chicken extends Animal {
         int births = breed();
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Chicken young = new Chicken(false, field, loc); //<- changed Rabbit to Chicken
+            Chicken young = new Chicken(false, field, loc); //<- changed chicken to Chicken
             newChickens.add(young);
         }
     }
@@ -93,8 +93,8 @@ public class Chicken extends Animal {
     }
     
     /**
-     * A rabbit can breed if it has reached the breeding age.
-     * @return true if the rabbit can breed, false otherwise.
+     * A chicken can breed if it has reached the breeding age.
+     * @return true if the chicken can breed, false otherwise.
      */
     private boolean canBreed()
     {

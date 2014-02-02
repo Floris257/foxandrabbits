@@ -8,6 +8,11 @@ import sun.audio.*;
 // Hence, we use a Swing application.
 public class SoundClipTest extends JFrame {
    
+	/**
+	 * This method tests the sound for the Rabbit sound
+	 * @param args
+	 * @throws Exception
+	 */
    public static void main(String[] args) throws Exception{
 	   Sound sound = new Sound();
 	   sound.rabbitSound();

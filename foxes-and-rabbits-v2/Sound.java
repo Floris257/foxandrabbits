@@ -10,6 +10,10 @@ import sun.audio.*;
 // Hence, we use a Swing application.
 public class Sound extends JFrame {
    
+	/**
+	 * Plays a sound when there is a certain amount of Rabbits
+	 * @throws IOException
+	 */
    public static void rabbitSound() throws IOException{
 	   String rabbitFile = "C:/var/www/html/rabbit1.wav";
 	   InputStream in = new FileInputStream(rabbitFile);

@@ -13,8 +13,9 @@ public class Histogram extends JPanel implements Observer {
     private Simulator model;
     
     /**
-     * Dit maakt een Histrogram aan, de informatie van dieren wordt gewonnen uit het object Simulator();
-     * Hier worden de hoeveelheden dieren 
+     * Makes a Histogram, the information comes form the class Simulator();
+     * It displays the amount of each animal
+     * 
      * @param model Is een object Simulator
      */
     public Histogram(Simulator model) {
@@ -52,7 +53,7 @@ public class Histogram extends JPanel implements Observer {
     }
     
     /**
-     * Dit geeft een update door aan de grafiek die al aangemaakt is
+     * Gives an update to the graph
      */
     public void update(Observable obs, Object arg) {
         model = (Simulator) obs;
@@ -67,7 +68,7 @@ public class Histogram extends JPanel implements Observer {
     }
     
     /**
-     * Hier word alle informatie omgezet in een Histogram
+     * Sets the propeties of the Histogram for each of the animals
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -96,8 +97,7 @@ public class Histogram extends JPanel implements Observer {
     }
 
     /**
-     * Hier word geteld hoeveel dieren er zijn op het veld.
-     * de gegevens worden allemaal uit simulator gehaald.
+     * Counts the amount of animals per animal.
      */
     public void generateCounts()
     {

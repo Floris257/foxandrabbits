@@ -43,6 +43,8 @@ public class Simulator extends Observable
     // A graphical view of the simulation.
     private SimulatorView view;
     
+    private int timeout = 500;
+    
     /**
      * Construct a simulation field with default size.
      */
@@ -329,16 +331,16 @@ public class Simulator extends Observable
         }
     }
     /**
-     * Dit returnt  de lijst van dieren
-     * @return animals De lijst van dieren die leven
+     * Returns the list animals that live in the simulator field
+     * @return animals The list of animals that live
      */
     public List<Animal> getAnimals(){
     	return animals;
     }
     
     /**
-     * Die geeft de breedte en hoogte van het veld. 
-     * @return field De groote van het veld (breedte en hoogte)
+     * Returns the values of the object Field (width and height)
+     * @return field The values of the object Field (width and height)
      */
     public Field getField(){
     	return field;

@@ -11,6 +11,11 @@ public class Disease {
 		this.carrier = carrier;
 	}
 	
+	/**
+	 * Gives the actors on the location a disease
+	 * @param field size of the simulation field
+	 * @param location Location of an actor
+	 */
 	public void spread(Field field, Location location){
 		List<Location> adjacentLocations = field.adjacentLocations(location);
 		Iterator<Location> it = adjacentLocations.iterator();

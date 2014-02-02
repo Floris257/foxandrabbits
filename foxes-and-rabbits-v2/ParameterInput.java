@@ -26,6 +26,11 @@ public class ParameterInput {
 		//omitted
 	}
 	
+	/**
+	 * no idea of what this should be and do
+	 * TODO ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	 * @param animal
+	 */
 	public ParameterInput(final String animal){
 		//TODO fix all this BS;
 		//
