@@ -1,3 +1,4 @@
+import java.util.Observable;
 import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import javax.swing.*;
  * @author David J. Barnes and Michael Kölling
  * @version 2011.07.31
  */
-public class Simulator
+public class Simulator extends Observable
 {
     // Constants representing configuration information for the simulation.
     // The default width for the grid.
@@ -327,7 +328,19 @@ public class Simulator
             }
         }
     }
+    /**
+     * Dit returnt  de lijst van dieren
+     * @return animals De lijst van dieren die leven
+     */
     public List<Animal> getAnimals(){
     	return animals;
+    }
+    
+    /**
+     * Die geeft de breedte en hoogte van het veld. 
+     * @return field De groote van het veld (breedte en hoogte)
+     */
+    public Field getField(){
+    	return field;
     }
 }
