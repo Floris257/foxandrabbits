@@ -44,8 +44,8 @@ public class Simulator extends Observable
     private SimulatorView view;
     //List of wildfires.
     private List<WildFire> wildFires;
-    
-    private int timeout = 500;
+    //class of food supply
+    private VoedselVoorraad voedselVoorraad;
     
     /**
      * Construct a simulation field with default size.
@@ -53,6 +53,7 @@ public class Simulator extends Observable
     public Simulator()
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
+        new VoedselVoorraad();
     }
     
     /**
@@ -309,6 +310,10 @@ public class Simulator extends Observable
         animals.addAll(newAnimals);
 
         view.showStatus(step, field);
+        
+
+        // Updates the amount of food supply
+        voedselVoorraad.updateVoedselVoorraad();
     }
         
     /**
