@@ -132,7 +132,7 @@ public class Rabbit extends Animal
      */
     private boolean canBreed()
     {
-        return age >= getBREEDING_AGE();
+    	return (age >= getBREEDING_AGE() && disease == null);
     }
 
 	public static int getBREEDING_AGE() {
