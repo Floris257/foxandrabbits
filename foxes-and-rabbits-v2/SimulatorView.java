@@ -191,7 +191,7 @@ public class SimulatorView extends JFrame
     {
         return stats.isViable(field);
     }
-    
+    //BULL
     /**
      * Provide a graphical view of a rectangular field. This is 
      * a nested class (a class defined inside a class) which
