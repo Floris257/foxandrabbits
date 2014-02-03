@@ -7,14 +7,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.*;
-
 import javax.swing.*;
+
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
  * containing rabbits and foxes.
  * 
- * @author David J. Barnes and Michael KÃ¶lling
+ * @author David J. Barnes and Michael Kölling
  * @version 2011.07.31
  */
 public class Simulator extends Observable
@@ -32,8 +32,6 @@ public class Simulator extends Observable
     private static final double CHICKEN_CREATION_PROBABILITY = 0.08;
     
     private static final double HUNTER_CREATION_PROBABILITY = 0.01;
-    
-   
 ////////////////////////////////////////////////////////////
 
     // List of animals in the field.
@@ -44,6 +42,8 @@ public class Simulator extends Observable
     private int step;
     // A graphical view of the simulation.
     private SimulatorView view;
+    //List of wildfires.
+    private List<WildFire> wildFires;
     
     private int timeout = 500;
     
@@ -70,10 +70,12 @@ public class Simulator extends Observable
         }
         
         animals = new ArrayList<Animal>();
+        wildFires = new ArrayList<WildFire>();
         field = new Field(depth, width);
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
+        view.setColor(WildFire.class, Color.red);
         view.setColor(Hunter.class, Color.gray);
         view.setColor(Chicken.class, Color.yellow);
         view.setColor(Rabbit.class, Color.orange);
@@ -84,6 +86,7 @@ public class Simulator extends Observable
         JMenu menu2 = new JMenu("Menu2");
         JMenuItem option1 = new JMenuItem("add Hunter");
         JMenuItem option2 = new JMenuItem("Change Fox");
+        JMenuItem addFire = new JMenuItem("add Wildfire");
         JMenuItem option3 = new JMenuItem("option2-1");
         JMenuItem option4 = new JMenuItem("option2-2");
         JMenuItem option5 = new JMenuItem("Change Rabbit");
@@ -94,6 +97,7 @@ public class Simulator extends Observable
         JMenuItem infect4 = new JMenuItem("Infect Hunter");
         JMenuItem help = new JMenu("Help");
         menu1.add(option1);
+        menu1.add(addFire);
         menu1.add(option2);
         menu2.add(option3);
         menu2.add(option4);
@@ -120,6 +124,11 @@ public class Simulator extends Observable
 				System.out.println("option1-2");
 			}
 		});
+        addFire.addActionListener(new ActionListener(){
+        	public void actionPerformed (ActionEvent e){
+        		wildFires.add(new WildFire(field));
+        	}
+        });
         option5.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
 				new ParameterInput("Rabbit");
@@ -135,6 +144,10 @@ public class Simulator extends Observable
         option3.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
 				System.out.println("option2-1");
+				//TODO
+				Iterator<WildFire> it = wildFires.iterator();
+		        while(it.hasNext()) {
+		            System.out.println(it.next());		        }
 			}
 		});
         option4.addActionListener(new ActionListener() {
@@ -277,8 +290,22 @@ public class Simulator extends Observable
                 it.remove();
             }
         }
+        //TODO
+        List<WildFire> newFires = new ArrayList<WildFire>();
+        Iterator<WildFire> it = wildFires.iterator();
+        while(it.hasNext()) {
+            WildFire wildFire = it.next();
+            if(wildFire.getLocation() != null){
+            	newFires.add(wildFire.spread());
+            	wildFire.burnOut();
+            }
+            else{
+            	it.remove();
+            }
+        }
                
         // Add the newly born foxes and rabbits to the main lists.
+        wildFires.addAll(newFires);
         animals.addAll(newAnimals);
 
         view.showStatus(step, field);
@@ -291,6 +318,7 @@ public class Simulator extends Observable
     {
         step = 0;
         animals.clear();
+        wildFires.clear();
         populate();
         
         // Show the starting state in the view.
