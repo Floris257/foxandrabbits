@@ -35,7 +35,7 @@ public class Hunter extends Animal
      * @param field The field currently occupied.
      * @param newFoxes A list to return newly born foxes.
      */
-    public void act(List<Animal> newHunters)
+    public void act(List<Actor> newHunters)
     {
         if(isAlive()) {
         	if(disease != null){

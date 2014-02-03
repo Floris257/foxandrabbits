@@ -1,4 +1,4 @@
-public class WildFire{
+public class WildFire implements Actor{
  
  private static final int DEFAULT_BURN_OUT_TIME = 5;
 	 //class vars
@@ -23,16 +23,20 @@ public class WildFire{
 	 }
 	 
 	 public WildFire spread(){
-	  System.out.println(location);
 	  Location adjacent = getField().randomAdjacentLocation(getLocation());
 	  Object obj = getField().getObjectAt(adjacent);
 	  if(obj instanceof WildFire){
 	   //TODO make body
 	   return null;
 	  }
-	  else{
-	   return(new WildFire(getField(), adjacent));
+	  if(obj == null){
+		  return(new WildFire(getField(), adjacent));
 	  }
+	  else{
+		  Animal tempobj = (Animal)obj;
+		  tempobj.setDead();
+		  return(new WildFire(getField(), adjacent));
+	  	}
 	 }
 	 
 	 public void burnOut(){

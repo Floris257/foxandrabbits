@@ -31,7 +31,7 @@ public class VoedselVoorraad {
 	/**
 	 * updates the status of food supply
 	 */
-	public void updateVoedselVoorraad(List<Animal> animals){
+	public void updateVoedselVoorraad(List<Actor> animals){
 		checkCountAnimal(animals);
 		voedselVoorraad = ((depth * width) - (rabbitCount + chickenCount)); 
 		//voedselVoorraad = 	voedselVoorraad - ((rabbitCount*rabbitEats)+(chickenCount*chickenEats));
@@ -49,11 +49,11 @@ public class VoedselVoorraad {
 	/**
 	 * Counts the amount of prey animals
 	 */
-	public void checkCountAnimal(List<Animal> animals){
+	public void checkCountAnimal(List<Actor> animals){
 		rabbitCount = 0;
         chickenCount = 0;
         for(int loop = 0; loop < animals.size(); loop++){
-        	Animal animal = animals.get(loop);
+        	Actor animal = animals.get(loop);
         	if(animal != null) {
                 if(animal instanceof Rabbit) {
                     rabbitCount++;

@@ -64,7 +64,7 @@ public class Chicken extends Animal {
      * New births will be made into free adjacent locations.
      * @param newChickens A list to return newly born chickens.
      */
-    private void giveBirth(List<Animal> newChickens)
+    private void giveBirth(List<Actor> newChickens)
     {
         // New chickens are born into adjacent locations.
         // Get a list of adjacent free locations.
@@ -102,7 +102,7 @@ public class Chicken extends Animal {
     }
 
 	@Override
-	public void act(List<Animal> newChickens) {
+	public void act(List<Actor> newChickens) {
 		incrementAge();
         if(isAlive()) {
         	if(disease != null){

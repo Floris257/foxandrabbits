@@ -35,15 +35,13 @@ public class Simulator extends Observable
 ////////////////////////////////////////////////////////////
 
     // List of animals in the field.
-    private List<Animal> animals;
+    private List<Actor> animals;
     // The current state of the field.
     private Field field;
     // The current step of the simulation.
     private int step;
     // A graphical view of the simulation.
     private SimulatorView view;
-    //List of wildfires.
-    private List<WildFire> wildFires;
     //class of food supply
     private VoedselVoorraad voedselVoorraad;
     
@@ -70,8 +68,7 @@ public class Simulator extends Observable
             width = DEFAULT_WIDTH;
         }
         
-        animals = new ArrayList<Animal>();
-        wildFires = new ArrayList<WildFire>();
+        animals = new ArrayList<Actor>();
         field = new Field(depth, width);
         
 
@@ -128,7 +125,10 @@ public class Simulator extends Observable
 		});
         addFire.addActionListener(new ActionListener(){
         	public void actionPerformed (ActionEvent e){
-        		wildFires.add(new WildFire(field));
+        		Location location = field.randomLocation();
+                WildFire wildFire = new WildFire(field, location);
+        		animals.add(wildFire);
+        		view.showStatus(step, field);
         	}
         });
         option5.addActionListener(new ActionListener() {
@@ -147,7 +147,7 @@ public class Simulator extends Observable
 			public void actionPerformed (ActionEvent e) {
 				System.out.println("option2-1");
 				//TODO
-				Iterator<WildFire> it = wildFires.iterator();
+				Iterator<Actor> it = animals.iterator();
 		        while(it.hasNext()) {
 		            System.out.println(it.next());		        }
 			}
@@ -165,10 +165,10 @@ public class Simulator extends Observable
         infect1.addActionListener(new ActionListener(){
         	//
         	public void actionPerformed(ActionEvent e){
-        		Iterator<Animal> it = animals.iterator();
+        		Iterator<Actor> it = animals.iterator();
         		Fox infectee = null;
         		while(it.hasNext() && infectee == null){
-        			Animal current = it.next();
+        			Actor current = it.next();
         			if(current instanceof Fox){
         				infectee = (Fox)current;
         			}
@@ -180,10 +180,10 @@ public class Simulator extends Observable
         infect2.addActionListener(new ActionListener(){
         	//
         	public void actionPerformed(ActionEvent e){
-        		Iterator<Animal> it = animals.iterator();
+        		Iterator<Actor> it = animals.iterator();
         		Rabbit infectee = null;
         		while(it.hasNext() && infectee == null){
-        			Animal current = it.next();
+        			Actor current = it.next();
         			if(current instanceof Rabbit){
         				infectee = (Rabbit)current;
         			}
@@ -195,10 +195,10 @@ public class Simulator extends Observable
         infect3.addActionListener(new ActionListener(){
         	//
         	public void actionPerformed(ActionEvent e){
-        		Iterator<Animal> it = animals.iterator();
+        		Iterator<Actor> it = animals.iterator();
         		Chicken infectee = null;
         		while(it.hasNext() && infectee == null){
-        			Animal current = it.next();
+        			Actor current = it.next();
         			if(current instanceof Chicken){
         				infectee = (Chicken)current;
         			}
@@ -210,10 +210,10 @@ public class Simulator extends Observable
         infect4.addActionListener(new ActionListener(){
         	//
         	public void actionPerformed(ActionEvent e){
-        		Iterator<Animal> it = animals.iterator();
+        		Iterator<Actor> it = animals.iterator();
         		Hunter infectee = null;
         		while(it.hasNext() && infectee == null){
-        			Animal current = it.next();
+        			Actor current = it.next();
         			if(current instanceof Hunter){
         				infectee = (Hunter)current;
         			}
@@ -284,33 +284,41 @@ public class Simulator extends Observable
         step++;
 
         // Provide space for newborn animals.
-        List<Animal> newAnimals = new ArrayList<Animal>();        
+        List<Actor> newAnimals = new ArrayList<Actor>();        
         // Let all rabbits act.
-        for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
-            Animal animal = it.next();
-            animal.act(newAnimals);
-            if(! animal.isAlive()) {
-                it.remove();
+        for(Iterator<Actor> it = animals.iterator(); it.hasNext(); ) {
+        	Actor animal = it.next();
+            if(animal instanceof Animal){
+            	
+            Animal tempAnimal = (Animal) animal;
+            	tempAnimal.act(newAnimals);
+            	if(! tempAnimal.isAlive()) {
+            		it.remove();
+            	}
             }
         }
         //TODO
-        List<WildFire> newFires = new ArrayList<WildFire>();
-        Iterator<WildFire> it = wildFires.iterator();
+        List<Actor> newFires = new ArrayList<Actor>();
+        Iterator<Actor> it = animals.iterator();
         while(it.hasNext()) {
-            WildFire wildFire = it.next();
-            if(wildFire.getLocation() != null){
-            	newFires.add(wildFire.spread());
-            	wildFire.burnOut();
-            }
-            else{
+        	
+        	Actor wildFire = it.next();
+        	if(wildFire instanceof WildFire){
+        		WildFire tempWildFire = (WildFire) wildFire;
+        		if(tempWildFire.getLocation() != null){
+            		newFires.add(tempWildFire.spread());
+            		tempWildFire.burnOut();
+            	}
+            	else{
             	it.remove();
-            }
+            	}
+        	}
         }
                
         // Add the newly born foxes and rabbits to the main lists.
-        wildFires.addAll(newFires);
+        animals.addAll(newFires);
         animals.addAll(newAnimals);
-
+        
         view.showStatus(step, field);
         
 
@@ -325,7 +333,6 @@ public class Simulator extends Observable
     {
         step = 0;
         animals.clear();
-        wildFires.clear();
         populate();
         
         // Show the starting state in the view.
@@ -371,7 +378,7 @@ public class Simulator extends Observable
      * Returns the list animals that live in the simulator field
      * @return animals The list of animals that live
      */
-    public List<Animal> getAnimals(){
+    public List<Actor> getAnimals(){
     	return animals;
     }
     
