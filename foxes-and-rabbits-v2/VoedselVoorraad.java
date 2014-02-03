@@ -6,29 +6,35 @@ public class VoedselVoorraad {
 	private Field field;
 	private double rabbitCount;
 	private double chickenCount;
-	private Simulator model;
+	//private Simulator model;
+	private int depth;
+	private int width;
 	
 	// this is the food supply per field
 	private static final double voedselwaarde = 10.0;
 	// this is the amount that a rabbit eats per step
-	private static final double rabbitEats = 1.0;
+	//private static final double rabbitEats = 0.2;
 	// this is the amount that a chicken eats per step
-	private static final double chickenEats = 0.5;
+	//private static final double chickenEats = 0.2;
 	
 	/**
 	 * Generates a food supply for the prey animals based on the side of the simulation field
 	 * @param voedselwaarde Food supply per field
 	 */
-	public VoedselVoorraad(){
-		voedselVoorraad = ((field.getDepth() * field.getWidth()) * voedselwaarde);
+	public VoedselVoorraad(Field field){
+		this.field = field;
+		this.depth = field.getDepth();
+		this.width = field.getWidth();
+		voedselVoorraad = ((depth * width) * voedselwaarde);
 	}
 	
 	/**
 	 * updates the status of food supply
 	 */
-	public void updateVoedselVoorraad(){
-		checkCountAnimal();
-		voedselVoorraad = 	voedselVoorraad - ((rabbitCount*rabbitEats)+(chickenCount*chickenEats));
+	public void updateVoedselVoorraad(List<Animal> animals){
+		checkCountAnimal(animals);
+		voedselVoorraad = ((depth * width) - (rabbitCount + chickenCount)); 
+		//voedselVoorraad = 	voedselVoorraad - ((rabbitCount*rabbitEats)+(chickenCount*chickenEats));
 		
 	}
 	
@@ -43,12 +49,11 @@ public class VoedselVoorraad {
 	/**
 	 * Counts the amount of prey animals
 	 */
-	public void checkCountAnimal(){
+	public void checkCountAnimal(List<Animal> animals){
 		rabbitCount = 0;
         chickenCount = 0;
-        List<Animal> aniList = model.getAnimals();
-        for(int loop = 0; loop < model.getAnimals().size(); loop++){
-        	Animal animal = aniList.get(loop);
+        for(int loop = 0; loop < animals.size(); loop++){
+        	Animal animal = animals.get(loop);
         	if(animal != null) {
                 if(animal instanceof Rabbit) {
                     rabbitCount++;

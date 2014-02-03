@@ -53,7 +53,7 @@ public class Simulator extends Observable
     public Simulator()
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
-        new VoedselVoorraad();
+        
     }
     
     /**
@@ -73,6 +73,7 @@ public class Simulator extends Observable
         animals = new ArrayList<Animal>();
         wildFires = new ArrayList<WildFire>();
         field = new Field(depth, width);
+        
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
@@ -246,6 +247,7 @@ public class Simulator extends Observable
         view.add(buttonPanel, BorderLayout.WEST);
         /////////////////////////////////////
         
+        voedselVoorraad = new VoedselVoorraad(field);
         
         // Setup a valid starting point.
         reset();
@@ -313,7 +315,7 @@ public class Simulator extends Observable
         
 
         // Updates the amount of food supply
-        voedselVoorraad.updateVoedselVoorraad();
+        voedselVoorraad.updateVoedselVoorraad(animals);
     }
         
     /**
