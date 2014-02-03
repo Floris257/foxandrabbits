@@ -110,4 +110,5 @@ public class Hunter extends Animal
 	public void setDiseaseDays(int days){
 		this.diseaseDays = days;
 	}
+	
 }
