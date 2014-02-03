@@ -32,6 +32,8 @@ public class Simulator extends Observable
     private static final double CHICKEN_CREATION_PROBABILITY = 0.08;
     
     private static final double HUNTER_CREATION_PROBABILITY = 0.01;
+    
+   
 ////////////////////////////////////////////////////////////
 
     // List of animals in the field.

@@ -17,4 +17,7 @@ public class Start {
 			
 	}
 
+	public static void main2(String[] args){
+		FieldStats stats = new FieldStats();
+	}
 }

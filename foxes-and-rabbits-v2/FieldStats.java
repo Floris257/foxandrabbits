@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -15,6 +16,7 @@ public class FieldStats
     private HashMap<Class, Counter> counters;
     // Whether the counters are currently up to date.
     private boolean countsValid;
+    private boolean playsound = true;
 
     /**
      * Construct a FieldStats object.
@@ -43,6 +45,19 @@ public class FieldStats
             buffer.append(": ");
             buffer.append(info.getCount());
             buffer.append(' ');
+            
+            if(info.getName().equals("Rabbit")){
+            	int tel = info.getCount();
+            	if(tel > 1500 && playsound == true){
+            		Sound sound = new Sound();
+            		try {
+						sound.rabbitSound();
+						playsound = false;
+					} catch (IOException e) {
+						e.printStackTrace();
+					};
+            	}
+            }
         }
         return buffer.toString();
     }
