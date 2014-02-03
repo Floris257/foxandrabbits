@@ -23,8 +23,6 @@ public class Rabbit extends Animal
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
-    
-    	
     // Individual characteristics (instance fields).
     
     // The rabbit's age.
@@ -154,7 +152,7 @@ public class Rabbit extends Animal
 	}
 
 	public static double getBREEDING_PROBABILITY() {
-		return BREEDING_PROBABILITY;
+		return (BREEDING_PROBABILITY * (VoedselVoorraad.getVoedselVoorraad()/10000));
 	}
 
 	public static void setBREEDING_PROBABILITY(double bREEDING_PROBABILITY) {

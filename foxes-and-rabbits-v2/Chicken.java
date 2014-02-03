@@ -142,7 +142,7 @@ public class Chicken extends Animal {
 		MAX_AGE = mAX_AGE;
 	}
 	public static double getBREEDING_PROBABILITY() {
-		return BREEDING_PROBABILITY;
+		return (BREEDING_PROBABILITY * (VoedselVoorraad.getVoedselVoorraad()/10000));
 	}
 	public static void setBREEDING_PROBABILITY(double bREEDING_PROBABILITY) {
 		BREEDING_PROBABILITY = bREEDING_PROBABILITY;

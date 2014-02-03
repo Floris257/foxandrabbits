@@ -2,7 +2,7 @@ import java.util.List;
 
 
 public class VoedselVoorraad {
-	private double voedselVoorraad;
+	private static double voedselVoorraad;
 	private Field field;
 	private double rabbitCount;
 	private double chickenCount;
@@ -20,7 +20,7 @@ public class VoedselVoorraad {
 	 * @param voedselwaarde Food supply per field
 	 */
 	public VoedselVoorraad(){
-		this.voedselVoorraad = ((field.getDepth() * field.getWidth()) * voedselwaarde);
+		voedselVoorraad = ((field.getDepth() * field.getWidth()) * voedselwaarde);
 	}
 	
 	/**
@@ -28,7 +28,7 @@ public class VoedselVoorraad {
 	 */
 	public void updateVoedselVoorraad(){
 		checkCountAnimal();
-		this.voedselVoorraad = 	voedselVoorraad - ((rabbitCount*rabbitEats)+(chickenCount*chickenEats));
+		voedselVoorraad = 	voedselVoorraad - ((rabbitCount*rabbitEats)+(chickenCount*chickenEats));
 		
 	}
 	
@@ -36,7 +36,7 @@ public class VoedselVoorraad {
 	 * returns the amount of food supply
 	 * @return voedselVoorraad Total amount of food supply
 	 */
-	public double getVoedselVoorraad(){
+	public static double getVoedselVoorraad(){
 		return voedselVoorraad;
 	}
 	
