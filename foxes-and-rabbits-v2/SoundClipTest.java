@@ -4,9 +4,7 @@ import javax.sound.sampled.*;
 import javax.swing.*;
 import sun.audio.*;
    
-// To play sound using Clip, the process need to be alive.
-// Hence, we use a Swing application.
-public class SoundClipTest extends JFrame {
+public class SoundClipTest {
    
 	/**
 	 * This method tests the sound for the Rabbit sound

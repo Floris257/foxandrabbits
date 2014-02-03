@@ -2,7 +2,11 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class ParameterInput {
@@ -12,15 +16,21 @@ public class ParameterInput {
 	private int maxAge;
 	private	double breedingProbability;
 	private int litterSize;
+	private ImageIcon imageFox = new ImageIcon("C:/var/www/html/fox.jpg");
+	private ImageIcon imageRabbit = new ImageIcon("C:/var/www/html/rabbit.jpg");
+	private ImageIcon imageChicken = new ImageIcon("C:/var/www/html/chicken.jpg");
+	private ImageIcon imageHunter = new ImageIcon("C:/var/www/html/hunter.jpg");
 	private JLabel nameLabel;
 	private JLabel BALabel = new JLabel("Vul de leeftijd in waarop de dieren beginnen met voortplanten [e.g. 5]");
 	private JLabel MALabel = new JLabel("Vul de leeftijd in waarop de dieren sterven [e.g. 18]");
 	private JLabel BPLabel = new JLabel("Vul de kans van voortplanting in [e.g. 0.36]");
 	private JLabel LSLabel = new JLabel("Vul de het maximum aantal geboortes per dier per stap in [e.g. 3]");
+	private JLabel imageLabel;
 	private JTextField BAText = new JTextField();
 	private JTextField MAText = new JTextField();
 	private JTextField BPText = new JTextField();
 	private JTextField LSText = new JTextField();
+	
 	
 	public ParameterInput(){
 		//omitted
@@ -31,7 +41,7 @@ public class ParameterInput {
 	 * TODO ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	 * @param animal
 	 */
-	public ParameterInput(final String animal){
+	public ParameterInput(final String animal) {
 		//TODO fix all this BS;
 		//
 		setVariables(animal);
@@ -96,16 +106,16 @@ public class ParameterInput {
 		});
 		reset.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//TODO get text, filter text, update vars;
 				setText();
 				
 				///////////
 			}
 		});
 		Container contentPane = frame.getContentPane();
-		//contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		JPanel labels = new JPanel();
 		labels.setLayout(new BoxLayout(labels, BoxLayout.Y_AXIS));
+		labels.add(imageLabel);
 		labels.add(nameLabel);
 		labels.add(BALabel);
 		labels.add(BAText);
@@ -138,14 +148,16 @@ public class ParameterInput {
 	private void setVariables(String animal){
 		if(animal.equals("Fox")){
 			//Fox BS
+			imageLabel = new JLabel(imageFox);
 			nameLabel = new JLabel("Vossen");
-			breedingAge = Fox.getBREEDING_AGE();
+	        breedingAge = Fox.getBREEDING_AGE();
 			maxAge = Fox.getMAX_AGE();
 			breedingProbability = Fox.getBREEDING_PROBABILITY();
 			litterSize = Fox.getMAX_LITTER_SIZE();
 		}
 		if(animal.equals("Rabbit")){
 			//Rabbit BS
+			imageLabel = new JLabel(imageRabbit);
 			nameLabel = new JLabel("Konijnen");
 			breedingAge = Rabbit.getBREEDING_AGE();
 			maxAge = Rabbit.getMAX_AGE();
@@ -154,6 +166,7 @@ public class ParameterInput {
 		}
 		if(animal.equals("Chicken")){
 			//Chicken BS
+			imageLabel = new JLabel(imageChicken);
 			nameLabel = new JLabel("Kippen");
 			breedingAge = Chicken.getBREEDING_AGE();
 			maxAge = Chicken.getMAX_AGE();
