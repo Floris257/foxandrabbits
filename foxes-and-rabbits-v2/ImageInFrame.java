@@ -9,7 +9,7 @@ public class ImageInFrame {
         String path = "C:/var/www/html/fox.jpg";
         File file = new File(path);
         BufferedImage image = ImageIO.read(file);
-        JLabel label = new JLabel(new ImageIcon(image.getScaledInstance(848, 480, 0)));
+        JLabel label = new JLabel(new ImageIcon(image.getScaledInstance(150, 150, 0)));
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.getContentPane().add(label);
